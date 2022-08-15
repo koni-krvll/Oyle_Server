@@ -5,8 +5,15 @@ const httpsAgent = new https.Agent({
     rejectUnauthorized: false
 });
 
-function fetcher(...args) {
-    args[1].agent = httpsAgent;
+
+/**
+ * Fetches data from a URL bypassing HTTPS SSL certificate verification
+ * @param {String} url URL to fetch data from
+ * @param {Object} options Options to pass to the fetch method
+ * @returns {Promise} Promise that resolves to the response body
+ */
+function fetcher(url, options = {}) {
+    options = {...options, agent: httpsAgent};
     return fetch(args);
 }
 
