@@ -13,7 +13,7 @@ const getAll = async (req, res) => {
  */
 const getOne = async (req, res) => {
     const { id } = req.params;
-    const club = await prismaClientInstance.club.findUniqueOrThrow({where: {id: +id}});
+    const club = await prismaClientInstance.club.findUnique({where: {id: +id}});
     res.status(200).send(club);
 }
 
