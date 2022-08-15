@@ -1,2 +1,2 @@
-release: npx prisma db seed
+release: npx prisma generate && npx prisma db seed
 web: npm start
