@@ -1,10 +1,10 @@
 const router = require('express').Router();
 
-const cache = require('../middlewares/cache');
+const cacheAndProtect = require('../middlewares/cacheAndProtect');
 
 const club = require('../controllers/club');
 
-router.get('/all', cache(club.getAll, 60*60));
-router.get('/:id', cache(club.getOne, 5));
+router.get('/all', cacheAndProtect(club.getAll, 60));
+router.get('/:id', cacheAndProtect(club.getOne, 5));
 
 module.exports = router;

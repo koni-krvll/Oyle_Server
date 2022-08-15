@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const prisma = require('../models/prismaClientInstance');
+const { prismaClientInstance } = require('../models');
 const { fetcher } = require("../utils");
 
 let clubs = [];
@@ -16,7 +16,7 @@ async function leechSync(club) {
             headers: {'Authorization': `Bearer ${process.env.LEECH_TKN}`}
         });
         const object = await data.json();
-        await prisma.club.update({
+        await prismaClientInstance.club.update({
             where: {
                 id: club.id
             },
@@ -30,7 +30,7 @@ async function leechSync(club) {
 }
 
 async function startLeechSync(seconds = 60) {
-    clubs = await prisma.club.findMany();
+    clubs = await prismaClientInstance.club.findMany();
     setInterval( async () => {
         if(currentClubIndex >= clubs.length) currentClubIndex = 0;
         leechSync(clubs[currentClubIndex])
