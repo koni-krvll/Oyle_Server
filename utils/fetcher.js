@@ -14,7 +14,7 @@ const httpsAgent = new https.Agent({
  */
 function fetcher(url, options = {}) {
     options = {...options, agent: httpsAgent};
-    return fetch(args);
+    return fetch(url, options);
 }
 
 module.exports = fetcher;

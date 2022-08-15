@@ -36,4 +36,5 @@ model Club {
   ratingCount    Int?
   vicinity       String?
   website        String?
+  popularity     Json?
 }
