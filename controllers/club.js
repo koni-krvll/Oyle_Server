@@ -14,8 +14,9 @@ async function clubWithLeech(club) {
         const object = await data.json();
         return {
             ...club,
-            currentPopularity: object['current_popularity'],
-            popularTimes: object['populartimes'],
+            popularity: {
+                ...object,
+            }
         }
     } catch(ignored) {
         return {
