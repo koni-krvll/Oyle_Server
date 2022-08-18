@@ -1,6 +1,6 @@
 # Endponumbers
 
-**Prefix to all endponumbers is ``/api/v1/``**
+**Prefix to all endpoints is ``/api/v1/``**
 
 ## Club
 
