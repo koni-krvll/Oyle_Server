@@ -1,4 +1,4 @@
-# Endponumbers
+# Endpoints
 
 **Prefix to all endpoints is ``/api/v1/``**
 
