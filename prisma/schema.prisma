@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,31 +7,30 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Artist {
-  id   String @id
-  name String
-  club Club[]
-}
-
 model Club {
-  id             Int      @id
-  address        String
-  region         String
-  country        String
-  name           String
-  description    String
-  eventsSoFar    Int
-  artists        Artist[]
-  placeId        String
-  lat            Float
-  lng            Float
-  types          String[]
-  businessStatus String?
-  openingHours   String?
-  priceLevel     Int?
-  rating         Float?
-  ratingCount    Int?
-  vicinity       String?
-  website        String?
-  popularity     Json?
+    id          Int @id
+    name        String
+    description String
+    address     String
+    region      String
+    country     String
+    eventsSoFar Int
+    capacity    Int
+    recommended Boolean
+    closed      Boolean
+    live        Boolean
+    artists     Json[]
+    placeId     String
+    lat         Float
+    lng         Float
+    status      String
+    hours       Json
+    price       Int
+    rating      Float
+    ratings     Int
+    vicinity    String
+    website     String
+    logo        String
+    image       String
+    types       String[]
 }

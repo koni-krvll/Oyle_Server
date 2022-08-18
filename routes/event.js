@@ -1,10 +1,10 @@
 const router = require('express').Router();
 
-const { getAll, getOne } = require('../controllers/club');
+const { getAll, getOne } = require('../controllers/event');
 
 const cache = require('../middlewares/cache');
 
 router.get('/all', cache(getAll, 60));
-router.get('/:id', cache(getOne, 10));
+router.get('/:id', cache(getOne, 30));
 
 module.exports = router;
