@@ -8,5 +8,6 @@ router.get('/status', (req, res) => {
 
 router.use('/club', require('./club'));
 router.use('/event', require('./event'));
+router.use('/user', require('./user'));
 
 module.exports = router;

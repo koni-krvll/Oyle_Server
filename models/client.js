@@ -4,4 +4,12 @@ const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
-module.exports = prisma;
+const { initializeApp, applicationDefault } = require('firebase-admin/app');
+
+const app = initializeApp({
+    credential: applicationDefault()
+});
+
+const client = Object.assign({}, prisma, app);
+
+module.exports = client;

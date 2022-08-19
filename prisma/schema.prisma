@@ -8,29 +8,39 @@ datasource db {
 }
 
 model Club {
-    id          Int @id
-    name        String
-    description String
-    address     String
-    region      String
-    country     String
-    eventsSoFar Int
-    capacity    Int
-    recommended Boolean
-    closed      Boolean
-    live        Boolean
-    artists     Json[]
-    placeId     String
-    lat         Float
-    lng         Float
-    status      String
-    hours       Json
-    price       Int
-    rating      Float
-    ratings     Int
-    vicinity    String
-    website     String
-    logo        String
-    image       String
-    types       String[]
+  id          Int      @id
+  name        String
+  description String
+  address     String
+  region      String
+  country     String
+  eventsSoFar Int
+  capacity    Int
+  recommended Boolean
+  closed      Boolean
+  live        Boolean
+  artists     Json[]
+  placeId     String
+  lat         Float
+  lng         Float
+  status      String
+  hours       Json
+  price       Int
+  rating      Float
+  ratings     Int
+  vicinity    String
+  website     String
+  logo        String
+  image       String
+  types       String[]
+}
+
+model User {
+  uid           String  @id
+  email         String  @unique
+  emailVerified Boolean @default(false)
+  phoneNumber   String?
+  displayName   String
+  photoUrl      String?
+  disabled      Boolean @default(false)
 }

@@ -3,15 +3,14 @@
 const club = require('../models/club');
 
 const fetch = require('../utilities/insecureFetch');
+const { leech } = require('../utilities/headers');
+
+const { notFound } = require('../utilities/errors');
 
 async function withLeech(club) {
     return {
         ...club,
-        ...await fetch(`${process.env.LEECH}/${club.placeId}`, {
-            headers: {
-                'Authorization': `Bearer ${process.env.LEECH_TKN}`,
-            }
-        })
+        ...await fetch(`${process.env.LEECH}/${club.placeId}`, leech)
     }
 }
 
@@ -26,7 +25,7 @@ async function getOne(req, res) {
         },
     });
     if (!c)
-        res.status(401).send({ message: 'Not found' });
+        res.status(401).send(notFound);
     else
         res.status(200).send(await withLeech(c));
 }
