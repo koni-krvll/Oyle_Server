@@ -3,6 +3,7 @@ const club = require('../models/club');
 const fetch = require('../utilities/insecureFetch');
 
 async function withLeech(club) {
+    if (!club.placeId) return club;
     return {
         ...club,
         ...await fetch(`${process.env.LEECH}/${club.placeId}`, {
