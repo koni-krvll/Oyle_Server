@@ -2,14 +2,16 @@
 
 const storage = {};
 
+const Express = require('express');
+
 /**
- * Stores a cache in memory for the given duration
- * @param endpoint
- * @param duration
- * @returns {(function(*, *): void)|*}
+ * Stores the response in memory for the given duration
+ * @param endpoint {(function({Express.Request}, {Express.Response}): void)|*} Endpoint to cache
+ * @param duration {Number} Duration of the cache in seconds
+ * @returns {(function({Express.Request}, {Express.Response}): void)|*}
  */
 function cache(endpoint, duration = 60) {
-    return function(req, res) {
+    return function (req, res) {
         const now = Date.now();
         const url = req.originalUrl;
         const cached = storage[url];

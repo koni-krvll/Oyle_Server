@@ -1,3 +1,5 @@
+'use strict';
+
 const club = require('../models/club');
 
 const fetch = require('../utilities/insecureFetch');
@@ -20,10 +22,13 @@ async function getAll(req, res) {
 async function getOne(req, res) {
     const c = await club.findUnique({
         where: {
-            id: +req.params.id || 0,
+            id: +req.params.id,
         },
     });
-    res.status(200).send(await withLeech(c));
+    if (!c)
+        res.status(401).send({ message: 'Not found' });
+    else
+        res.status(200).send(await withLeech(c));
 }
 
 module.exports = {

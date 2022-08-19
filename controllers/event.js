@@ -1,10 +1,12 @@
+'use strict';
+
 const fetch = require('../utilities/insecureFetch');
 
 async function getAll(req, res) {
     const data = await fetch(`${process.env.LEECH}/events`, {
-            headers: {
-                'Authorization': `Bearer ${process.env.LEECH_TKN}`,
-            }
+        headers: {
+            'Authorization': `Bearer ${process.env.LEECH_TKN}`,
+        }
     });
     res.status(200).send(data);
 }
