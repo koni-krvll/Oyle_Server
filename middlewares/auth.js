@@ -7,7 +7,7 @@ function authorize(req, res, next) {
     const bearer = req.headers['authorization'].split(' ')[1];
     auth
         .verifyIdToken(bearer)
-        .then((decoded) => {
+        .then(async (decoded) => {
             await user.upsert({
                 where: {
                     uid: decoded.uid,
