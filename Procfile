@@ -1,2 +1,2 @@
-release: npx prisma generate && npx prisma db push && npx prisma db seed
+release: npm run migrate
 web: npm run prod

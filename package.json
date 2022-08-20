@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "migrate": "npx prisma generate && npx prisma db push && npx prisma db seed",
     "prod": "npx pm2-runtime start ecosystem.config.js --env production",
     "dev": "npx nodemon -e js,json --exec npm start"
   },
