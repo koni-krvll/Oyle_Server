@@ -8,6 +8,7 @@ function authorize(req, res, next) {
     auth
         .verifyIdToken(bearer)
         .then(async (decoded) => {
+            console.log(decoded);
             await user.upsert({
                 where: {
                     uid: decoded.uid,
