@@ -16,7 +16,7 @@ function cache(endpoint, duration = 60) {
         const url = req.originalUrl;
         const cached = storage[url];
         if (cached && cached['dies'] > now)
-            res.status(cached['status']).send(cached['data']);
+            res.status(cached['status'] || 200).send(cached['data'] || {});
         else {
             storage[url] = {
                 dies: (now + duration * 1000),

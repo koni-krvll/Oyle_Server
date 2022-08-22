@@ -10,7 +10,7 @@ async function getAll(req, res) {
 }
 
 async function getOne(req, res) {
-    const data = await fetch(`${process.env.LEECH}/${req.params.id}`, leech);
+    const data = await fetch(`${process.env.LEECH}${req.params.id}`, leech);
     res.status(200).send(data);
 }
 

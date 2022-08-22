@@ -7,17 +7,7 @@ const { getAll, getOne } = require('../controllers/club');
 const cache = require('../middlewares/cache');
 const check = require('../middlewares/check');
 
-const { isPositiveInt } = require('../utilities/checkers');
-
 router.get('/all', cache(getAll, 90));
-router.get('/:id', check(
-    cache(getOne, 30),
-    {
-        params:
-            [
-                { name: 'id', checker: isPositiveInt }
-            ]
-    }
-));
+router.get('/:id', cache(getOne, 30));
 
 module.exports = router;

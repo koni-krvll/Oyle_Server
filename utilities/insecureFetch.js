@@ -12,7 +12,8 @@ async function insecureFetch(url, options = {}) {
         options['agent'] = httpsAgent;
     try {
         return await (await fetch(url, options)).json();
-    } catch (ignored) {
+    } catch (e) {
+        console.error(`Error on reading ${url}`, e);
         return {};
     }
 }

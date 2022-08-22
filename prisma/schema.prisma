@@ -33,6 +33,25 @@ model Club {
   logo        String
   image       String
   types       String[]
+  Event       Event[]
+}
+
+model Event {
+  id          Int      @id
+  name        String
+  description String
+  age         Int
+  cost        String
+  date        String
+  startTime   String
+  endTime     String
+  attending   Int
+  lineup      String
+  ticketed    Boolean
+  festival    Boolean
+  images      String[]
+  club        Club?    @relation(fields: [clubId], references: [id])
+  clubId      Int
 }
 
 model User {
