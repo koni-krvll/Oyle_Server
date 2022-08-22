@@ -51,7 +51,7 @@ model Event {
   festival    Boolean
   images      String[]
   club        Club?    @relation(fields: [clubId], references: [id])
-  clubId      Int
+  clubId      Int?
 }
 
 model User {

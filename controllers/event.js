@@ -25,33 +25,40 @@ async function getOne(req, res) {
     } else {
         const data = await fetch(`${process.env.LEECH}events/${req.params.id}`, leech);
         const club = await fetch(`${process.env.LEECH}${data.club}`, leech);
-        try {
-            const newEvent = await event.create({
-                data: {
-                    id: data.id,
-                    name: data.name,
-                    description: data.description,
-                    age: +data.age,
-                    cost: data.cost,
-                    date: data.date,
-                    startTime: data.startTime,
-                    endTime: data.endTime,
-                    attending: data.attending,
-                    lineup: data.lineup,
-                    ticketed: data.ticketed,
-                    festival: data.festival,
-                    images: data.images,
-                    club: {
-                        connectOrCreate: {
-                            where: { id: +club.id },
-                            create: { ...club }
-                        },
-                    },
+        const query = {
+            where: {
+                id: data.id
+            },
+            update: {},
+            create: {
+                id: data.id,
+                name: data.name,
+                description: data.description,
+                age: +data.age,
+                cost: data.cost,
+                date: data.date,
+                startTime: data.startTime,
+                endTime: data.endTime,
+                attending: data.attending,
+                lineup: data.lineup,
+                ticketed: data.ticketed,
+                festival: data.festival,
+                images: data.images,
+            }
+        };
+        if (Object.keys(club).length > 0) {
+            query.create.club = {
+                connectOrCreate: {
+                    where: { id: +club.id },
+                    create: { ...club }
                 },
-                include: {
-                    club: true
-                }
-            });
+            };
+            query.include = {
+                club: true
+            }
+        }
+        try {
+            const newEvent = await event.upsert(query);
             res.status(200).send(newEvent);
         }
         catch (e) {
