@@ -26,6 +26,28 @@ GET ``/all`` : ``[Partial<Event>]``
 
 GET ``:id`` : ``Event``
 
+## User
+
+**Prefix to this collection is ``/user/``**.
+
+**Headers for this collection are**:
+- Authorization: Bearer ${TOKEN}
+
+Where token is a Google Firebase Auth token.
+
+
+### Login
+
+GET ``/login`` : ``User & DDMSwitch?``
+
+POST ``/ddm/setup``: ``DDMSwitch``
+- Body: ``DDMSwitch``
+
+POST ``/ddm/stop``: ``DDMSwitch``
+- Body: ``{ password: string }``
+
+GET ``/ddm/alive``: ``{ message }``
+
 # Models
 
 ## Club
@@ -107,3 +129,25 @@ GET ``:id`` : ``Event``
 ``festival: boolean``
 
 ``club: number(id)``
+
+## DDMSwitch
+
+``starts: string(DateTime)``
+
+``ends: string(DateTime)``
+
+``updated: string(DateTime)``
+
+``phone: string(Phone)``
+
+``interval: number(seconds)``
+
+``password: string``
+
+``message: string``
+
+``userUid: string (user.uid)``
+
+## User
+
+``uid: string(id)``

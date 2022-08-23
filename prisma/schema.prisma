@@ -63,6 +63,7 @@ model DDMSwitch {
   id       Int    @id @default(autoincrement())
   starts   String
   ends     String
+  updated  String
   phone    String
   interval Int
   password String
