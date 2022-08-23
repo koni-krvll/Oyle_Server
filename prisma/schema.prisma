@@ -55,11 +55,18 @@ model Event {
 }
 
 model User {
-  uid           String  @id
-  email         String  @unique
-  emailVerified Boolean @default(false)
-  phoneNumber   String?
-  displayName   String
-  photoUrl      String?
-  disabled      Boolean @default(false)
+  uid       String     @id
+  DDMSwitch DDMSwitch?
+}
+
+model DDMSwitch {
+  id       Int    @id @default(autoincrement())
+  starts   String
+  ends     String
+  phone    String
+  interval Int
+  password String
+  message  String
+  user     User   @relation(fields: [userUid], references: [uid])
+  userUid  String @unique
 }

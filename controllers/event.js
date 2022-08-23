@@ -63,7 +63,6 @@ async function getOne(req, res) {
         }
         catch (e) {
             console.error(e);
-            console.log(data, club);
         }
     }
 }

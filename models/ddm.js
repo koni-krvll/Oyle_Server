@@ -2,6 +2,4 @@
 
 const client = require('./client');
 
-const user = client.user;
-
-module.exports = user;
+module.exports = client.dDMSwitch;
